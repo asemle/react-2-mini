@@ -7,16 +7,20 @@ export default class SizeChanger extends Component {
       allowEdit: this.props.allowEdit
     };
   }
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      allowEdit: newProps.allowEdit
+    })
+  }
 
-  // componentWillReceiveProps
 
   render() {
     return (
-      <select className="dropDownContainer">
+      <select onChange={(e) => this.props.update(parseInt(e.target.value))} disabled={this.state.allowEdit === "false"} className="dropDownContainer">
         <option value="12"> 12 </option>
         <option value="13"> 13 </option>
         <option value="14"> 14 </option>
-      </select>
+      </select> 
     )
   }
 }
